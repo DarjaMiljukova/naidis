@@ -1,0 +1,17 @@
+C:\Users\milju\Desktop\naidis-master\naidis\bin\Debug\net6.0-windows\naidis.exe
+C:\Users\milju\Desktop\naidis-master\naidis\bin\Debug\net6.0-windows\naidis.deps.json
+C:\Users\milju\Desktop\naidis-master\naidis\bin\Debug\net6.0-windows\naidis.runtimeconfig.json
+C:\Users\milju\Desktop\naidis-master\naidis\bin\Debug\net6.0-windows\naidis.dll
+C:\Users\milju\Desktop\naidis-master\naidis\bin\Debug\net6.0-windows\naidis.pdb
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.csproj.AssemblyReference.cache
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.AssemblyInfoInputs.cache
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.AssemblyInfo.cs
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.csproj.CoreCompileInputs.cache
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.dll
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\refint\naidis.dll
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.pdb
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.genruntimeconfig.cache
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\ref\naidis.dll
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.TrianglePictureBoxControl.resources
+C:\Users\milju\Desktop\naidis-master\naidis\obj\Debug\net6.0-windows\naidis.csproj.GenerateResource.cache
