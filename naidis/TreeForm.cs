@@ -24,7 +24,7 @@ namespace naidis
         Button btn2;
         Button btn3;
 
-        private MyForm triangleForm;
+        private TriangleForm triangleForm;
 
         bool isBtnVisible = false;
         bool isLblVisible = false;
@@ -36,6 +36,7 @@ namespace naidis
 
         public TreeForm()
         {
+
             this.Height = 1280;
             this.Width = 1200;
             this.Text = "Vorm põhielementidega";
@@ -55,7 +56,9 @@ namespace naidis
             btn.Click += Btn_Click;
             btn.MouseHover += Btn_MouseHover;
             btn.MouseDown += new MouseEventHandler(this.Form_MouseDown);
-            //Label
+            
+            //label
+
             treeNode.Nodes.Add(new TreeNode("Silt-Label"));
             lbl = new Label();
             lbl.Text = "Pealkiri";
@@ -64,7 +67,9 @@ namespace naidis
             lbl.BackColor = Color.White;
             lbl.BorderStyle = BorderStyle.Fixed3D;
             lbl.Font = new Font("Tahoma", 24);
-            //Tekstkast
+            
+            //tekstkast
+
             treeNode.Nodes.Add(new TreeNode("Tekstkast-Texbox"));
             txt_box = new TextBox();
             txt_box.BorderStyle = BorderStyle.Fixed3D;
@@ -74,23 +79,24 @@ namespace naidis
             txt_box.Location = new Point(tree.Width, btn.Top + btn.Height);
             txt_box.KeyDown += new KeyEventHandler(Txt_box_KeyDown);
 
+            //radiobutton
 
-            //Radiobutton
-            treeNode.Nodes.Add(new TreeNode("RadioButton"));
+            treeNode.Nodes.Add(new TreeNode("RadioNupp-RadioButton"));
             r1 = new RadioButton();
-            r1.Text = "Valik 1";
+            r1.Text = "Valgus teema";
             r1.Location = new Point(tree.Width, txt_box.Location.Y + txt_box.Height);
 
             r2 = new RadioButton();
-            r2.Text = "Valik 2";
+            r2.Text = "Tume teema";
             r2.Location = new Point(r1.Location.X + r1.Width, txt_box.Location.Y + txt_box.Height);
 
 
             r1.CheckedChanged += new EventHandler(Radiobuttons_Changed);
             r2.CheckedChanged += new EventHandler(Radiobuttons_Changed);
 
-            //CheckBox
-            treeNode.Nodes.Add(new TreeNode("CheckBox"));
+            //checkbox
+
+            treeNode.Nodes.Add(new TreeNode("Kontrollkast-CheckBox"));
             c1 = new CheckBox();
             c1.Text = "Valik 1";
             c1.Location = new Point(tree.Width, r1.Location.Y + r1.Height);
@@ -102,8 +108,9 @@ namespace naidis
             c1.CheckedChanged += new EventHandler(CheckBox_Changed);
 
 
-            //image
-            treeNode.Nodes.Add(new TreeNode("PictureBox"));
+            //picturebox
+
+            treeNode.Nodes.Add(new TreeNode("Piltkast-PictureBox"));
             pb = new PictureBox();
             pb.Location = new Point(tree.Width, c2.Location.Y + c2.Height);
             pb.Image = new Bitmap("../../../images.jpg");
@@ -111,15 +118,15 @@ namespace naidis
             pb.SizeMode = PictureBoxSizeMode.Zoom;
             pb.BorderStyle = BorderStyle.Fixed3D;
 
-            //list box
+            //listbox
+
             treeNode.Nodes.Add(new TreeNode("ListBox"));
             lb = new ListBox();
-            lb.Items.Add("Roheline");
-            lb.Items.Add("Sinine");
-            lb.Items.Add("Hall");
             lb.Items.Add("Kollane");
+            lb.Items.Add("Punane");
+            lb.Items.Add("Sinine");
+            lb.Items.Add("Lille");
             lb.Location = new Point(tree.Width, pb.Location.Y + pb.Height);
-            this.Controls.Add(lb);
 
 
 
@@ -139,14 +146,13 @@ namespace naidis
             btn3.Click += Btn3_Click;
 
 
-            //DAta
+            //data
+
             treeNode.Nodes.Add(new TreeNode("DataGridView"));
             DataSet ds = new DataSet("XML fail. Menüü");
             ds.ReadXml(@"..\..\..\books.xml");
             DataGridView dataGrid = new DataGridView();
             dataGrid.Location = new Point(tree.Width + pb.Width, pb.Location.Y);
-            // dataGrid.Height = 175;
-            // dataGrid.Width = 780;
             dataGrid.DataSource = ds;
             dataGrid.AutoGenerateColumns = true;
             dataGrid.AutoSize = true;
@@ -155,9 +161,10 @@ namespace naidis
             dataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
 
-            // trianger
+            //triangle
             treeNode.Nodes.Add(new TreeNode("Kolmnurk"));
-
+            btn2= new Button();
+            btn2.Height = 50;
 
 
 
@@ -186,7 +193,6 @@ namespace naidis
             lb.Visible = false;
 
 
-
         }
 
 
@@ -198,7 +204,6 @@ namespace naidis
                 lb.Items.Add(tekst);
                 lb.Height += 20;
                 btn2.Location = new Point(lb.Left, lb.Bottom);
-
             }
         }
 
@@ -215,8 +220,8 @@ namespace naidis
             if (e.Button == MouseButtons.Right)
             {
                 TreeNode selectedNode = tree.GetNodeAt(e.X, e.Y);
-                MessageBox.Show("You clicked on node: " + selectedNode.Text);
-                Console.WriteLine("Click");
+                MessageBox.Show("Te klõpsasite sõlme: " + selectedNode.Text);
+                Console.WriteLine("Klõpsake");
             }
         }
 
@@ -224,7 +229,7 @@ namespace naidis
         {
             if (e.Button == MouseButtons.Right)
             {
-                MessageBox.Show("You clicked on node: " + e.Node.Text, "Solution 2");
+                MessageBox.Show("Te klõpsasite sõlme: " + e.Node.Text, "Lahendus 2");
             }
         }
 
@@ -286,6 +291,8 @@ namespace naidis
                 r1.ForeColor = Color.White;
                 r2.ForeColor = Color.White;
             }
+
+
         }
 
 
@@ -294,75 +301,67 @@ namespace naidis
             btn.BackColor = Color.Red;
         }
 
-        private void Tree_AfterSelect(object? sender, TreeViewEventArgs e)
+        private void Tree_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            btn.Visible = isBtnVisible;
+            lbl.Visible = isLblVisible;
+            txt_box.Visible = isTxtVisible;
+            r1.Visible = isRVisible;
+            r2.Visible = isRVisible;
+            c1.Visible = isCBVisible;
+            c2.Visible = isCBVisible;
+            pb.Visible = isPBVisible;
+            lb.Visible = isLBVisible;
+
             if (e.Node.Text == "Nupp-Button")
             {
-                tree.SelectedNode = null;
-                isBtnVisible = !isBtnVisible;
-                btn.Visible = isBtnVisible;
+                isBtnVisible = true;
             }
             else if (e.Node.Text == "Silt-Label")
             {
-                tree.SelectedNode = null;
-                isLblVisible = !isLblVisible;
-                lbl.Visible = !isLblVisible;
+                isLblVisible = true;
             }
             else if (e.Node.Text == "Tekstkast-Texbox")
             {
-                tree.SelectedNode = null;
-                isTxtVisible = !isTxtVisible;
-                txt_box.Visible = !isTxtVisible;
-
-                //txt_box.Visible = false;
+                isTxtVisible = true;
             }
-            else if (e.Node.Text == "RadioButton")
+            else if (e.Node.Text == "RadioNupp-RadioButton")
             {
-                tree.SelectedNode = null;
-                isRVisible = !isRVisible;
-                r1.Visible = !isRVisible;
-                r2.Visible = !isRVisible;
-
-                //txt_box.Visible = false;
+                isRVisible = true;
             }
-            else if (e.Node.Text == "CheckBox")
+            else if (e.Node.Text == "Kontrollkast-CheckBox")
             {
-                tree.SelectedNode = null;
-                isCBVisible = !isCBVisible;
-                c1.Visible = !isCBVisible;
-                c2.Visible = !isCBVisible;
+                isCBVisible = true;
             }
-            else if (e.Node.Text == "PictureBox")
+            else if (e.Node.Text == "Piltkast-PictureBox")
             {
-                tree.SelectedNode = null;
-                isPBVisible = !isPBVisible;
-                pb.Visible = !isPBVisible;
+                isPBVisible = true;
             }
             else if (e.Node.Text == "ListBox")
             {
-                tree.SelectedNode = null;
-                isLblVisible = !isLblVisible;
-                lb.Visible = !isLblVisible;
+                isLBVisible = true;
             }
-            else if (e.Node.Text == "Triangle")
+            else if (e.Node.Text == "Kolmnurk-Triangle")
             {
+                isLBVisible = true;
                 tree.SelectedNode = null;
-                triangleForm = new MyForm();
-                triangleForm.Show();
+                TriangleForm triangleForm = new TriangleForm();
+                triangleForm.Show(); 
             }
+
         }
 
 
 
         private void Btn_Click(object? sender, EventArgs e)
         {
-            if (btn.BackColor == Color.Aqua)
+            if (btn.BackColor == Color.Plum)
             {
-                btn.BackColor = Color.Chocolate;
+                btn.BackColor = Color.Pink;
             }
             else
             {
-                btn.BackColor = Color.Aqua;
+                btn.BackColor = Color.Plum;
             }
         }
         private void Form_MouseDown(object sender, MouseEventArgs e)
@@ -371,16 +370,16 @@ namespace naidis
             switch (e.Button)
             {
                 case MouseButtons.Left:
-                    MessageBox.Show("Left Button Click");
-                    btn.BackColor = Color.Chocolate;
+                    MessageBox.Show("Vasaku nupu klõpsamine");
+                    btn.BackColor = Color.Red;
                     break;
                 case MouseButtons.Right:
-                    MessageBox.Show("Right Button Click");
-                    btn.BackColor = Color.Aqua;
+                    MessageBox.Show("Parema nupu klõpsamine");
+                    btn.BackColor = Color.Green;
                     break;
                 case MouseButtons.Middle:
-                    MessageBox.Show("Middle Button Click");
-                    btn.BackColor = Color.Green;
+                    MessageBox.Show("Keskmise nupu klõpsamine");
+                    btn.BackColor = Color.Yellow;
                     break;
 
                 default:
