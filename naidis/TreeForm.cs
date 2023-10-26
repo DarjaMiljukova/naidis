@@ -165,6 +165,7 @@ namespace naidis
             treeNode.Nodes.Add(new TreeNode("Kolmnurk"));
             btn2= new Button();
             btn2.Height = 50;
+            btn2.Click += Btn2_Click;
 
 
 
@@ -341,11 +342,10 @@ namespace naidis
             {
                 isLBVisible = true;
             }
-            else if (e.Node.Text == "Kolmnurk-Triangle")
+            else if (e.Node.Text == "Kolmnurk")
             {
                 isLBVisible = true;
-                tree.SelectedNode = null;
-                TriangleForm triangleForm = new TriangleForm();
+                triangleForm = new TriangleForm();
                 triangleForm.Show(); 
             }
 
